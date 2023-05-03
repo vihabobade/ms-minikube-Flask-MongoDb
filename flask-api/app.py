@@ -4,7 +4,7 @@ from bson.objectid import ObjectId
 import socket
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://mongo:27017/dev"
-# app.config["MONGO_URI"] = "mongodb://mongo.default.svc.cluster/dev"
+# app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/dev"
 mongo = PyMongo(app)
 db = mongo.db
 @app.route("/")
@@ -29,7 +29,8 @@ def get_all_tasks():
 @app.route("/task", methods=["POST"])
 def create_task():
     data = request.get_json(force=True)
-    db.task.insert_one({"task": data["task"]})
+    # db.task.insert_one({"task": data["task"]})
+    db.task.insert_many(data)
     return jsonify(
         message="Task saved successfully!"
     )

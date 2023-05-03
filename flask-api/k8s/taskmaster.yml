@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: taskmaster
-          image: vihabobade/tasksapp-python:1.0.11
+          image: vihabobade/tasksapp-python:1.0.13
           ports:
             - containerPort: 5000
           imagePullPolicy: Always
